@@ -1,0 +1,111 @@
+/* Author: Celo
+Date: 29.11.2016
+*/
+
+#include <iostream>
+#define _USE_MATH_DEFINES
+#include <math.h>
+#include <cmath>
+
+using namespace std;
+
+struct Punkt2D {
+	int x;
+	int y;
+};
+
+struct Dreieck {
+	Punkt2D a;
+	Punkt2D b;
+	Punkt2D c;
+};
+
+struct Rechteck {
+	Punkt2D p1;
+	Punkt2D p2;
+	Punkt2D p3;
+	Punkt2D p4;
+};
+
+struct Kreis {
+	Punkt2D mittelpunkt;
+	double radius;
+};
+
+double umfang (Punkt2D a, Punkt2D b, Punkt2D c) {
+	double seiteA = sqrt(pow(b.x - c.x, 2) + pow(b.y - c.y, 2));
+	double seiteB = sqrt(pow(a.x - c.x, 2) + pow(a.y - c.y, 2));
+	double seiteC = sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
+	double umfang = seiteA + seiteB + seiteC;
+	return umfang;
+}	
+
+double umfang(Punkt2D p1, Punkt2D p2, Punkt2D p3, Punkt2D p4) {
+	double seiteA = sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2));
+	double seiteB = sqrt(pow(p3.x - p2.x, 2) + pow(p3.y - p2.y, 2));
+	double seiteC = sqrt(pow(p4.x - p3.x, 2) + pow(p4.y - p3.y, 2));
+	double seiteD = sqrt(pow(p1.x - p4.x, 2) + pow(p1.y - p4.y, 2));
+	double umfang = seiteA + seiteB + seiteC + seiteD;
+	return umfang;
+}
+
+double umfang(double radius) {
+	double umfang = 2*M_PI*radius;
+	return umfang;
+}
+
+double flaeche(Punkt2D p1, Punkt2D p2, Punkt2D p3, Punkt2D p4) {
+	double seiteA = sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2));
+	double seiteB = sqrt(pow(p3.x - p2.x, 2) + pow(p3.y - p2.y, 2));
+	double flaeche = seiteA * seiteB;
+	return flaeche;
+}
+
+double flaeche(Punkt2D a, Punkt2D b, Punkt2D c) {
+	double seiteA = sqrt(pow(b.x - c.x, 2) + pow(b.y - c.y, 2));
+	double seiteB = sqrt(pow(a.x - c.x, 2) + pow(a.y - c.y, 2));
+	double seiteC = sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
+	double umfang = seiteA + seiteB + seiteC;
+	double flaeche = sqrt(umfang / 2 * (umfang / 2 - seiteA) * (umfang / 2 - seiteB) * (umfang / 2 - seiteC));
+		return flaeche;
+}
+
+double flaeche(double radius) {
+	double flaeche = M_PI*pow(radius, 2);
+	return flaeche;
+
+}
+
+int main() {
+	Dreieck dreieck1;
+	dreieck1.a.x = 0;
+	dreieck1.a.y = 0;
+	dreieck1.b.x = 0;
+	dreieck1.b.y = 4;
+	dreieck1.c.x = 4;
+	dreieck1.c.y = 0;
+	
+	Rechteck rechteck1;
+	rechteck1.p1.x = 0;
+	rechteck1.p1.y = 0;
+	rechteck1.p2.x = 0;
+	rechteck1.p2.y = 4;
+	rechteck1.p3.x = 4;
+	rechteck1.p3.y = 4;
+	rechteck1.p4.x = 4;
+	rechteck1.p4.y = 0;
+	
+	Kreis kreis1;
+	kreis1.mittelpunkt.x = 5;
+	kreis1.mittelpunkt.y = 5;
+	kreis1.radius = 5;
+	
+	cout << "Der Umfang des Dreiecks betraegt: " << umfang(dreieck1.a, dreieck1.b, dreieck1.c) << endl;
+	cout << "Die Flaeche des Dreiecks betraegt: " << flaeche(dreieck1.a, dreieck1.b, dreieck1.c) << endl << endl;
+	cout << "Der Umfang des Rechtecks betraegt: " << umfang(rechteck1.p1, rechteck1.p2, rechteck1.p3, rechteck1.p4) << endl;
+	cout << "Die Flaeche des Rechtecks betraegt: " << flaeche(rechteck1.p1, rechteck1.p2, rechteck1.p3, rechteck1.p4) << endl << endl;
+	cout << "Der Umfang des Kreises betraegt: " << umfang(kreis1.radius) << endl;
+	cout << "Die Flaeche des Kreises betraegt: " << flaeche(kreis1.radius) << endl << endl;
+	system("pause");
+	return 0;
+}
