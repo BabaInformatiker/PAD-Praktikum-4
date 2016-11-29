@@ -1,0 +1,96 @@
+//Mustafa
+#include <cstdlib>
+#include <iostream>
+#include <vector>
+using namespace std;
+template <typename T>
+
+T isSorted(vector<T> &x, int laenge) {
+	int i;
+	T v;
+	T a;
+	int z = 0;
+	bool Boolean;
+
+	for (i = 0; i < laenge - 1; i++)
+	{
+		v = x.at(i);
+		z++;
+
+		a = x.at(z);
+
+		if (v < a)
+		{
+			continue;
+		}
+		else if (v == a)
+		{
+			continue;
+		}
+
+		else {
+			break;
+		}
+	}
+
+	if (v < a)
+	{
+		Boolean = true;
+	}
+	else
+		Boolean = false;
+
+	cout << ((Boolean == true) ? "Die Werte im Vektor sind aufsteigend sortiert" : "Die Werte im Vektor sind nicht aufsteigend sortiert") << endl;;
+
+	return true;
+	return false;
+
+}
+
+template<typename B>
+B getAverage(vector<B> &bb, int lange)
+{
+	B c;
+	B b = 0;
+	B durchschnitt;
+
+	for (int i = 0; i < lange; i++)
+	{
+		c = bb.at(i);
+
+
+		b = b + c;
+
+	}
+
+	durchschnitt = b / lange;
+	cout << "Der Durchschnitt des Vectors betragt: " << durchschnitt << endl;
+
+
+	return c, b;
+}
+
+
+int main() {
+
+	int eingabe;
+	cout << "Wie viele Zahlen willst du eingeben: ";
+	cin >> eingabe;
+
+	vector<float> a;
+
+
+	float zahl;
+
+	for (int i = 0; i < eingabe; i++)
+	{
+		cin >> zahl;
+		a.push_back(zahl);
+	}
+
+	isSorted(a, eingabe);
+	getAverage(a, eingabe);
+	system("pause");
+
+	return 0;
+}
